@@ -1,6 +1,22 @@
-<h1>All Tasks</h1>
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li class="active">Task Index</a></li>
+</ol>
 
-<% @tasks.each do |task| %>
-<h3><a href="/tasks/<%= task.id %>"><%= task.title %></a></h3>
-  <p><%= task.description %></p>
-<% end %>
+<div class='page-header'>
+   <h1>All Tasks</h1>
+</div>
+
+<div class='list-group'>
+  <% @tasks.each do |task| %>
+  <a href="/tasks/<%= task.id %>" class="list-group-item list-group-item-action">
+    <h5 class="list-group-item-heading"><%= task.title%></h5>
+    <small><p class="list-group-item-text"><%= task.description %>. </p></small>
+  </a>
+  <a class="glyphicon glyphicon-edit" href="/tasks/<%= task.id %>/edit"></a>
+  <form action="/tasks/<%= task.id %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <button type="submit" class="glyphicon glyphicon-remove-sign"></button>
+  </form><br/>
+  <% end %>
+</div>
